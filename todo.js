@@ -17,19 +17,35 @@ function deleteTask(task) {
 };
 
 function showList() {
-    const result = {};
+    let counter = 0;
+    console.log('\nTo Do: ');
     for (key in TODOlist) {
-        const value = TODOlist[key];
-        if (result.hasOwnProperty(value)) {
-            result[value] = [value, key];
-        } else result[value] = key;
-    };
-    console.log(JSON.stringify(result, null, 4));
+        if (TODOlist[key] == 'To Do') {
+            console.log(`\t${key}`);
+            counter += 1;
+        } 
+    } if (counter == 0) { console.log('\t-'); };
+    counter = 0;
+    console.log('\nIn Progress: ');
+    for (key in TODOlist) {
+        if (TODOlist[key] == 'In Progress') {
+             console.log(`\t${key}`);
+             counter += 1;
+        }
+    } if (counter == 0) { console.log('\t-'); };
+    counter = 0;
+    console.log('\nDone: ');
+    for (key in TODOlist) {
+        if (TODOlist[key] == 'Done') {
+            console.log(`\t${key}`);
+            counter += 1;
+        }
+    } if (counter == 0) { console.log('\t-'); };
 };
 
 changeStatus("Write a post", "In Progress");
 addTask("Have a walk");
-addTask("Buy new phone");
-changeStatus("Buy new phone", "Done");
+//addTask("Buy new phone");
+//changeStatus("Buy new phone", "Done");
 deleteTask("Call to Mom");
 showList()
